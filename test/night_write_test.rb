@@ -16,7 +16,7 @@ class NightWriteTest < Minitest::Test
     night_write = NightWrite.new("message.txt", "braille.txt")
     refute text == nil
   end
-  
+
   def test_night_write_accurately_counts_characters
     text = File.open("message.txt")
     night_write = NightWrite.new("message.txt", "braille.txt")
