@@ -13,7 +13,7 @@ class NightWrite
     file_chars = text.flatten.each do |line|
       line.strip!
     end.join("").size
-    puts "Created #{output_file} containing #{file_chars} characters"
+    p "Created #{output_file} containing #{file_chars} characters"
   end
 end
 

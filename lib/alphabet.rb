@@ -1,8 +1,7 @@
 require 'pry'
 
 class Alphabet
- attr_reader :alphabet
-
+attr_reader :alphabet
 def initialize
 @alphabet = {
  "a" => ["0.", "..", ".."],
@@ -70,20 +69,4 @@ def initialize
  "0" => [".0", ".0", "00", ".0", "00", ".."]
 }
 end
-
-# Make it take infinite numbers of letters,
-# Start new line at 80 chars
-# Expland to include caps--maybe some kind of if statement for index #'s
-# Feed it a file
-# Output result to txt file
-# This won't remain in this file
-
- def translate(word)
-   letters = word.split("")
-     puts "#{alphabet[letters[0]][0]}#{alphabet[letters[1]][0]}"
-     puts "#{alphabet[letters[0]][1]}#{alphabet[letters[1]][1]}"
-     puts "#{alphabet[letters[0]][2]}#{alphabet[letters[1]][2]}"
-   end
-end
-
-Alphabet.new.translate("and")
+end 
