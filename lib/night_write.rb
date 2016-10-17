@@ -1,3 +1,4 @@
+require './lib/translate'
 require 'pry'
 class NightWrite
   attr_reader :input_file,
@@ -8,12 +9,14 @@ class NightWrite
     @output_file = output
   end
 
-  def output_to_terminal
+  def 
+
+  def output_to_terminal_braille_to_english
     @text = File.readlines(input_file)
     file_chars = text.flatten.each do |line|
       line.strip!
     end.join("").size
-    puts "Created #{output_file} containing #{file_chars} characters"
+    p "Created #{output_file} containing #{file_chars} characters"
   end
 end
 
