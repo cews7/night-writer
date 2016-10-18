@@ -4,6 +4,7 @@ require './lib/braille_to_english'
 
 class BrailleToEnglishTest < MiniTest::Test
   def test_braille_to_english_class_exists
+    skip
     assert_instance_of BrailleToEnglish, BrailleToEnglish.new
   end
 
@@ -14,7 +15,13 @@ class BrailleToEnglishTest < MiniTest::Test
   end
 
   def test_translate_on_multiple_braille_characters
+    skip
     t = BrailleToEnglish.new
     assert_equal "apple", t.translate("0.00000.0.\n..0.0.0..0\n..0.0.0...")
+  end
+
+  def test_translate_works_with_two_letters
+    t = BrailleToEnglish.new
+    assert_equal "at", t.translate("0..0\n..00\n..0.")
   end
 end
