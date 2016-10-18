@@ -1,5 +1,3 @@
-require 'pry'
-
 class Alphabet
   attr_reader :alphabet
   def initialize
