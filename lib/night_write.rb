@@ -1,4 +1,4 @@
-require './lib/translate'
+require './lib/english_to_braille'
 require 'pry'
 class NightWrite
   attr_reader :input_file,
@@ -8,8 +8,6 @@ class NightWrite
     @input_file = input
     @output_file = output
   end
-
-  def 
 
   def output_to_terminal_braille_to_english
     @text = File.readlines(input_file)
