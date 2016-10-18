@@ -21,7 +21,13 @@ class BrailleToEnglishTest < MiniTest::Test
   end
 
   def test_translate_works_with_two_letters
+    skip
     t = BrailleToEnglish.new
     assert_equal "at", t.translate("0..0\n..00\n..0.")
+  end
+
+  def test_translate_works_with_caps
+    t = BrailleToEnglish.new
+    assert_equal "Hey there here is a phrase", t.translate("..0.0.00...00.0.0.0...0.0.0.0....0.0..0...000.0.0..00.\n..00.0.0..0000.000.0..00.000.0..0.0.......0.0000..0..0\n.0....00..0.....0.........0.......0.......0...0...0...")
   end
 end
