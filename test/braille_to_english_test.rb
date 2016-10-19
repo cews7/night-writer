@@ -8,13 +8,22 @@ class BrailleToEnglishTest < MiniTest::Test
   end
 
   def test_translate_on_one_braille_character
-    skip
     t = BrailleToEnglish.new
     assert_equal "a", t.translate("0.\n..\n..")
   end
 
   def test_translate_on_multiple_braille_characters
     t = BrailleToEnglish.new
+    assert_equal "ab", t.translate("0.0.\n..0.\n....")
+  end
+
+  def test_translate_on_multiple_braille_characters
+    t = BrailleToEnglish.new
     assert_equal "apple", t.translate("0.00000.0.\n..0.0.0..0\n..0.0.0...")
+  end
+
+  def test_translate_works_with_phrase
+    t = BrailleToEnglish.new
+    assert_equal "hey there here is a phrase", t.translate("0.0.00...00.0.0.0...0.0.0.0....0.0..0...000.0.0..00.\n00.0.0..0000.000.0..00.000.0..0.0.......0.0000..0..0\n....00..0.....0.........0.......0.......0...0...0...")
   end
 end

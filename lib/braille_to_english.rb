@@ -5,17 +5,30 @@ class BrailleToEnglish
   def initialize
     @letters = Alphabet.new
   end
-
   def translate(input)
-    split_braille = input.split("\n")
-    binding.pry
-    if letters.alphabet.has_value?(split_braille)
-      contents = letters.alphabet.map do |key, value|
-        content = []
-        if value == split_braille
-          content << key
-        end
-      end.compact.flatten.join("")
+    joined_braille = input.join
+    split_braille_first = joined_braille.split("\n")
+    split_braille = []
+    repeats = split_braille_first[0].length/2
+    repeats.times do
+      split_braille_first.each do |string|
+        split_braille << string[0..1]
+        string.slice!(0)
+        string.slice!(0)
+      end
     end
+    split_braille.join(", ")
+    split_braille = split_braille.each_slice(3).to_a
+    content = []
+    split_braille.each do |braille_char|
+      letters.alphabet.each do |key, value|
+        if letters.alphabet.has_value?(braille_char)
+          if value == braille_char
+            content << key
+          end
+        end
+      end
+    end
+    content.flatten.join("")
   end
 end
