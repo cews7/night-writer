@@ -1,10 +1,11 @@
 require './lib/alphabet'
-require 'pry'
+
 class BrailleToEnglish
   attr_reader :letters
   def initialize
     @letters = Alphabet.new
   end
+
   def translate(input)
     joined_braille = input.join
     split_braille_first = joined_braille.split("\n")

@@ -1,6 +1,6 @@
 require './lib/braille_to_english'
 require 'pry'
-class NightWrite
+class NightRead
   attr_reader :input_file,
               :output_file
   attr_accessor :text
@@ -32,5 +32,5 @@ running_file = ($PROGRAM_NAME == __FILE__)
 if running_file
   input_file = ARGV[0]
   output_file = ARGV[1]
-  NightWrite.new(input_file, output_file).output_to_terminal_braille_to_english
+  NightRead.new(input_file, output_file).output_to_terminal_braille_to_english
 end
