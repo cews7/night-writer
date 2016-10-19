@@ -1,5 +1,4 @@
 require './lib/alphabet'
-
 class EnglishToBraille
   attr_reader :letters
   def initialize
@@ -7,7 +6,7 @@ class EnglishToBraille
   end
 
   def translate(input)
-    split_word = input.split("")
+    split_word = input.join.chars
     translate_each_letter = split_word.map do |letter|
       letters.alphabet[letter]
     end
