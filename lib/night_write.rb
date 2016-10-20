@@ -2,8 +2,8 @@ require './lib/english_to_braille'
 require 'pry'
 class NightWrite
   attr_reader :input_file,
-              :output_file,
-              :text
+  :output_file,
+  :text
 
   def initialize(input, output)
     @input_file  = input
@@ -12,8 +12,12 @@ class NightWrite
 
   def braille_character_count
     file_chars = text.flatten.each { |line| line.strip! }.join("").size
-    puts output(output_file,file_chars)
-    file_chars * 6 
+    @real_chars = file_chars
+    if @real_chars > 480
+      print "Sorry, that's "
+    else
+      puts output(output_file,file_chars)
+    end
   end
 
   def output(output_file,file_chars)
@@ -24,7 +28,11 @@ class NightWrite
     file_name = ARGV[0] || "message.txt"
     @text = File.readlines(file_name)
     braille_character_count
-    created_braille_file
+    if @real_chars > 480
+      print "too many characters!"
+    else
+      created_braille_file
+    end
   end
 
   def created_braille_file
