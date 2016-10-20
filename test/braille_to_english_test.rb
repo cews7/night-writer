@@ -32,4 +32,9 @@ class BrailleToEnglishTest < MiniTest::Test
     t = BrailleToEnglish.new
     assert_equal "at", t.translate("0..0\n..00\n..0.")
   end
+
+  def test_translate_takes_in_a_file
+    t = BrailleToEnglish.new
+    assert_equal ""
+  end
 end
