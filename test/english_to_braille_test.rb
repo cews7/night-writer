@@ -11,31 +11,29 @@ class EnglishToBrailleTest < Minitest::Test
     english_to_braille = EnglishToBraille.new
     alphabet = english_to_braille.letters.alphabet
     refute_equal nil, alphabet
-    #add another assertion to varify that the hash actually contains correct information
   end
 
-  def test_translate_takes_single_letter_word
-    t = EnglishToBraille.new
-    assert_equal "0.\n..\n..", t.translate("a")
+  def test_translate_works_with_a_letter
+    english_to_braille = EnglishToBraille.new
+    expected = "0.0.\n....\n...."
+    assert_equal expected, english_to_braille.translate(["aa"])
   end
 
-  def test_translate_takes_multi_letter_word
-    t = EnglishToBraille.new
-    assert_equal "0..0\n..00\n..0.", t.translate("at")
-    assert_equal "0.00000.0.\n..0.0.0..0\n..0.0.0...", t.translate("apple")
+  def test_translate_works_with_caps
+    english_to_braille = EnglishToBraille.new
+    expected = "..0.\n....\n.0.."
+    assert_equal expected, english_to_braille.translate(["A"])
   end
 
-  def test_translate_takes_numbers
-    t = EnglishToBraille.new
-    assert_equal ".0.0\n000.\n....", t.translate("1")
+  def test_translates_works_with_numbers
+    english_to_braille = EnglishToBraille.new
+    expected = ".00.\n.0..\n00.."
+    assert_equal expected, english_to_braille.translate(["1"])
   end
 
-  def test_translate_takes_phrases
-     t = EnglishToBraille.new
-     assert_equal "..0.0.00...00.0.0.0...0.0.0.0....0.0..0...000.0.0..00.\n..00.0.0..0000.000.0..00.000.0..0.0.......0.0000..0..0\n.0....00..0.....0.........0.......0.......0...0...0..." , t.translate("Hey there here is a phrase")
-   end
-
-  def test_english_to_braille_method_creates_formatted_text_file
-    skip
+  def test_translate_works_with_phrase
+    english_to_braille = EnglishToBraille.new
+    expected = "0.0.00\n00.0.0\n....00"
+    assert_equal expected, english_to_braille.translate(["hey"])
   end
 end
