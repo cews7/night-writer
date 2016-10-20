@@ -44,26 +44,34 @@ class BrailleToEnglish
 
   def caps(content)
     100000.times do
-      if content.include?("^")
-        index = content.index("^")
-        caps = content[index+1].capitalize!
-        content[index+1] = caps
-        content.slice!(index)
-      end
+      caps_replacement(content)
     end
     nums(content)
   end
 
+  def caps_replacement(content)
+    if content.include?("^")
+      index = content.index("^")
+      caps = content[index+1].capitalize!
+      content[index+1] = caps
+      content.slice!(index)
+    end
+  end
+
   def nums(content)
     100000.times do
-      if content.include?("#")
-        index = content.index("#")
-        nums = content[index+1].ord - 96
-        nums = nums.to_s
-        content[index+1] = nums
-        content.slice!(index)
-      end
+      nums_replacement(content)
     end
     content
+  end
+
+  def nums_replacement(content)
+    if content.include?("#")
+      index = content.index("#")
+      nums = content[index+1].ord - 96
+      nums = nums.to_s
+      content[index+1] = nums
+      content.slice!(index)
+    end
   end
 end

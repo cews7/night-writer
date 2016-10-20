@@ -13,8 +13,27 @@ class EnglishToBrailleTest < Minitest::Test
     refute_equal nil, alphabet
   end
 
-  def test_translate_works_with_a_phrase
+  def test_translate_works_with_a_letter
     english_to_braille = EnglishToBraille.new
-    assert_equal [[".0", "0.", ".0", ".0", "..", ".0", ".0", "..", ".0", "0.", "00", "0.", "..", ".0", "0.", "00", ".0", "..", ".0", "0.", ".0", ".0", "..", ".0", ".0", "..", ".0", "0.", "00", "0.", "..", ".0", "0.", "00", ".0"], ["00", "00", "0.", "0.", "..", "0.", "0.", "..", "0.", ".0", "..", ".0", "..", "00", ".0", "..", "00", "..", "00", "00", "0.", "0.", "..", "0.", "0.", "..", "0.", ".0", "..", ".0", "..", "00", ".0", "..", "00"], ["0.", "..", "..", "0.", "..", "..", "0.", "..", "0.", "0.", "0.", "..", "..", "0.", "..", "00", "0.", "..", "0.", "..", "..", "0.", "..", "..", "0.", "..", "0.", "0.", "0.", "..", "..", "0.", "..", "00", "0."]], english_to_braille.translate("this is some text this is some text")
+    expected = "0.0.\n....\n...."
+    assert_equal expected, english_to_braille.translate(["aa"])
+  end
+
+  def test_translate_works_with_caps
+    english_to_braille = EnglishToBraille.new
+    expected = "..0.\n....\n.0.."
+    assert_equal expected, english_to_braille.translate(["A"])
+  end
+
+  def test_translates_works_with_numbers
+    english_to_braille = EnglishToBraille.new
+    expected = ".00.\n.0..\n00.."
+    assert_equal expected, english_to_braille.translate(["1"])
+  end
+
+  def test_translate_works_with_phrase
+    english_to_braille = EnglishToBraille.new
+    expected = "0.0.00\n00.0.0\n....00"
+    assert_equal expected, english_to_braille.translate(["hey"])
   end
 end

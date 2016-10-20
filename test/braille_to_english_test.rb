@@ -7,34 +7,29 @@ class BrailleToEnglishTest < MiniTest::Test
     assert_instance_of BrailleToEnglish, BrailleToEnglish.new
   end
 
-  def test_translate_on_one_braille_character
-    t = BrailleToEnglish.new
-    assert_equal "a", t.translate("0.\n..\n..")
+  def test_braille_is_a_string
+    b = BrailleToEnglish.new
+    assert_equal "a", b.braille_to_string(["0.", "..", ".."])
   end
 
-  def test_translate_on_multiple_braille_characters
-    t = BrailleToEnglish.new
-    assert_equal "ab", t.translate("0.0.\n..0.\n....")
+  def test_braille_is_split_into_letters
+    b = BrailleToEnglish.new
+    assert_equal "aa", b.braille_to_string(["0...", "..0.", "...."])
   end
 
-  def test_translate_on_multiple_braille_characters
-    t = BrailleToEnglish.new
-    assert_equal "apple", t.translate("0.00000.0.\n..0.0.0..0\n..0.0.0...")
+  def test_braille_translates_phrase_word
+    b = BrailleToEnglish.new
+    assert_equal "hey", b.braille_to_string(["0.00..", "0..0..", "00.000"])
   end
 
-
-  def test_translate_works_with_phrase
-    t = BrailleToEnglish.new
-    assert_equal "hey there here is a phrase", t.translate("0.0.00...00.0.0.0...0.0.0.0....0.0..0...000.0.0..00.\n00.0.0..0000.000.0..00.000.0..0.0.......0.0000..0..0\n....00..0.....0.........0.......0.......0...0...0...")
+  def test_braille_translates_caps
   end
 
-  def test_translate_works_with_two_letters
-    t = BrailleToEnglish.new
-    assert_equal "at", t.translate("0..0\n..00\n..0.")
+  def test_braille_translates_numbers
+    b = BrailleToEnglish.new
+    assert_equal "1", b.braille_to_string([".0.000", "0....."])
   end
 
-  def test_translate_takes_in_a_file
-    t = BrailleToEnglish.new
-    assert_equal ""
+  def test_braille_translates_phrases
   end
 end

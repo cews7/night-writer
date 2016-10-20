@@ -12,7 +12,7 @@ class NightWriteTest < Minitest::Test
   end
 
   def test_night_write_can_take_input_file
-    text = File.readlines("./test/data/message.txt", "r")
+    text = File.readlines("message.txt", "r")
     night_write = NightWrite.new("message.txt", "braille.txt")
     refute_equal nil, text
   end
@@ -20,6 +20,6 @@ class NightWriteTest < Minitest::Test
   def test_night_write_accurately_counts_characters
     night_write = NightWrite.new("message.txt", "braille.txt")
     night_write.english_to_braille
-    assert_equal 210, night_write.braille_character_count
+    assert_equal 102, night_write.real_chars
   end
 end

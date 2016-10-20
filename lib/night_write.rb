@@ -3,7 +3,8 @@ require 'pry'
 class NightWrite
   attr_reader :input_file,
   :output_file,
-  :text
+  :text,
+  :real_chars
 
   def initialize(input, output)
     @input_file  = input
@@ -12,7 +13,7 @@ class NightWrite
 
   def braille_character_count
     file_chars = text.flatten.each { |line| line.strip! }.join("").size
-    @real_chars = file_chars
+    @real_chars = file_chars * 6
     if @real_chars > 480
       print "Sorry, that's "
     else

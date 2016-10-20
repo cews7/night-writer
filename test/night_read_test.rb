@@ -11,13 +11,13 @@ class NightReadTest < Minitest::Test
   end
 
   def test_night_read_can_take_input_file
-    text = File.readlines("./test/data/english.txt", "r")
-    night_read = NightRead.new("./test/data/braille.txt", "./test/data/english.txt")
+    text = File.readlines("english.txt", "r")
+    night_read = NightRead.new("braille.txt", "english.txt")
     refute_equal nil, text
   end
 
   def test_night_write_accurately_counts_characters
-    night_read = NightRead.new("./test/data/braille.txt", "./test/data/english.txt")
-    assert_equal 53, night_read.braille_to_english
+    night_read = NightRead.new("braille.txt", "english.txt")
+    assert_equal "Created english.txt containing 18 characters", night_read.braille_to_english
   end
 end
